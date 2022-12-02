@@ -76,6 +76,8 @@ for i in latCentres:
 print("\nTraining Data:\n")
 print(trainingData.head())
 
+trainingData.to_csv('trainingData.csv')
+
 #~~~~ Graph features against each other to check suitability ~~~~~~~~~~~~~~~~~~#
 X1 = trainingData.iloc[:, 2]
 X2 = trainingData.iloc[:, 3]
@@ -99,6 +101,8 @@ plt.rc('font', size=18)
 plt.rcParams['figure.constrained_layout.use'] = True
 plt.axes(label = "background").set_facecolor('#eeeeff')
 plt.scatter(X1, Y, color='#00a714', marker='+')
+m, b = np.polyfit(X1, Y, 1)
+plt.plot(X1, m*X1+b)
 plt.xlim(0, 23)
 plt.ylim(0,120)
 plt.xlabel("Number of Attractions"); plt.ylabel("Number of Accommodations")
@@ -108,6 +112,8 @@ plt.rc('font', size=18)
 plt.rcParams['figure.constrained_layout.use'] = True
 plt.axes(label = "background").set_facecolor('#eeeeff')
 plt.scatter(X2, Y, color='#0754a7', marker='o')
+m, b = np.polyfit(X2, Y, 1)
+plt.plot(X2, m*X2+b)
 plt.xlim(0,250)
 plt.ylim(0,120)
 plt.xlabel("Number of Activities"); plt.ylabel("Number of Accommodations")
